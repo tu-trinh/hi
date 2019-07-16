@@ -1,20 +1,32 @@
 <div class="grid-container">
   <h1 class="mat-h1">Dashboard</h1>
-  
-  <mat-grid-list cols="4" rowHeight="250px">
-      <mat-grid-tile
-          *ngFor="let friend of friends"
-          [colspan]="friend.cols"
-          [rowspan]="friend.rows">
-        <img src="assets/friends/{{friend.name}}.png" />
+  <mat-drawer-container>
+    <mat-grid-list cols="3" rowHeight="250px">
+        <mat-grid-tile
+            *ngFor="let friend of friends"
+            [colspan]="friend.cols"
+            [rowspan]="friend.rows">
+          <img src = "assets/friends/{{friend.name}}.png"/>
+          <mat-grid-tile-footer>
+            <h3 mat-line>{{friend.name}}</h3>
+            <span mat-line>{{friend.status}}</span>
+            <button mat-icon-button (click) = "friendDetails.toggle()"><mat-icon>info</mat-icon></button>
+          </mat-grid-tile-footer>
+        </mat-grid-tile>
+      </mat-grid-list>
 
-        <mat-grid-tile-footer>
-          <h3 mat-line>{{friend.name}}</h3>
-          <span mat-line>{{friend.status}}</span>
-          <button mat-icon-button aria-label="info icon">
-              <mat-icon>info</mat-icon>
-            </button>
-        </mat-grid-tile-footer>
-      </mat-grid-tile>
-    </mat-grid-list>
+      <mat-drawer #friendDetails mode="side" position="end">Friend Details
+        <mat-tab-group>
+          <mat-tab label = "About">
+            Testing
+          </mat-tab>
+          <mat-tab label = "Messages">
+            Testing
+          </mat-tab>
+          <mat-tab label = "Photos">
+            Testing
+          </mat-tab>
+        </mat-tab-group>
+      </mat-drawer>
+    </mat-drawer-container>
 </div>
